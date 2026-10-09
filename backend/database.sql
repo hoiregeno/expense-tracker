@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS expense_tracker
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE expense_tracker;
+
+CREATE TABLE categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL UNIQUE,
+  color CHAR(7) NOT NULL DEFAULT '#888888',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE expenses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  category_id INT NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  amount DECIMAL(10, 2) NOT NULL,
+  expense_date DATE NOT NULL,
+  note VARCHAR(255) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_expenses_category
+  FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT,
+  INDEX idx_expense_date (expense_date)
+) ENGINE=InnoDB;
