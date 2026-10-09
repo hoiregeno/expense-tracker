@@ -40,12 +40,15 @@ expense-tracker/
 ├── .gitignore
 ├── README.md
 ├── frontend/
+│   ├── js/
+│       ├── api.js              # shared fetch helper
+|       ├── expenses.js
+|       └── categories.js
+|   ├── css/
+|        └── style.css
 │   ├── index.html          # summary, expenses table, add/edit modal
 │   ├── categories.html     # manage categories
-│   ├── style.css
-│   ├── api.js              # shared fetch helper
-│   ├── expenses.js
-│   └── categories.js
+│   ├── style.css   
 └── backend/
     ├── db.php              # credentials, JSON headers, CORS, mysqli connection
     ├── categories.php      # categories endpoint
